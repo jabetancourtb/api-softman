@@ -1,0 +1,151 @@
+
+/* ***************************** ROLES ***************************** */
+INSERT INTO roles(id, nombre, descripcion, created_at)
+VALUES (1, 'ROLE_ADMIN', 'Control total de la plataforma', '2025-01-31 16:48:05.591');
+
+INSERT INTO roles(id, nombre, descripcion, created_at)
+VALUES (2, 'ROLE_MEDICO', 'Rol médico', '2025-01-31 16:48:05.593');
+
+INSERT INTO roles(id, nombre, descripcion, created_at)
+VALUES (3, 'ROLE_PACIENTE', 'Rol paciente', '2025-01-31 16:48:05.595');
+/* ***************************** ROLES ***************************** */
+
+
+/* ***************************** PERMISOS ***************************** */
+/* Permisos para Administrator */
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (1, 'Admin_Read', 'Lectura de contenido por Adminitrador', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (2, 'Admin_Update', 'Actualizar contenido por Administrador', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (3, 'Admin_Delete', 'Eliminar contenido por Administrador', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (4, 'Admin_Create', 'Crear contenido por Administrador', '2025-01-31 16:48:05.591');
+
+
+/* Permisos para Médico */
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (5, 'Medico_Read', 'Leer contenido por Médico', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (6, 'Medico_Update', 'Actualizar contenido por Médico', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (7, 'Medico_Delete', 'Eliminar contenido por Médico', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (8, 'Medico_Create', 'Crear contenido por Médico', '2025-01-31 16:48:05.591');
+
+
+/* Permisos para Paciente */
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (9, 'Paciente_Read', 'Leer contenido por Paciente', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (10, 'Paciente_Update', 'Actualizar contenido por Paciente', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (11, 'Paciente_Delete', 'Eliminar contenido por Paciente', '2025-01-31 16:48:05.591');
+
+INSERT INTO permisos(id, nombre, descripcion, created_at)
+VALUES (12, 'Paciente_Create', 'Crear contenido por Paciente', '2025-01-31 16:48:05.591');
+/* ***************************** PERMISOS ***************************** */
+
+
+
+
+/* ***************************** ROLES_PERMISOS ***************************** */
+/* Roles_Permisos para Administrador */
+
+-- Administrador - Admin_read
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1, 1);
+
+-- Administrador - Admin_Update
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1, 2);
+
+-- Administrador - Admin_Delete
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1, 3);
+
+-- Administrador - Admin_Create
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1, 4);
+
+-- Administrador - Medico_Read
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1, 5);
+
+-- Administrador - Medico_Update
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1 ,6);
+
+-- Administrador - Medico_Delete
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1 ,7);
+
+-- Administrador - Medico_Create
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1 ,8);
+
+-- Administrador - Paciente_Read
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1 ,9);
+
+-- Administrador - Paciente_Update
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1 ,10);
+
+-- Administrador - Paciente_Delete
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1 ,11);
+
+-- Administrador - Paciente_Create
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (1 ,12);
+
+
+/* Roles_Permisos para Médico */
+
+-- Médico - Medico_Read
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (2, 5);
+
+-- Médico - Medico_Update
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (2, 6);
+
+-- Médico - Medicor_Delete
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (2, 7);
+
+-- Médico - Medico_Create
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (2, 8);
+
+
+/* Roles_Permisos para Paciente */
+
+-- Paciente - Paciente_Read
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (3, 9);
+
+-- Paciente - Paciente_Update
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (3, 10);
+
+-- Paciente - Paciente_Delete
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (3, 11);
+
+-- Paciente - Paciente_Create
+INSERT INTO roles_permisos(id_rol, id_permiso)
+VALUES (3, 12);
+/* ***************************** ROLES_PERMISOS ***************************** */

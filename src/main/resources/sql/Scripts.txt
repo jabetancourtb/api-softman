@@ -1,0 +1,65 @@
+INSERT INTO tipos_documento(id, created_at, codigo_documento, nombre_documento, modified_at)
+VALUES (1, '2025-01-31 16:48:05.591', 'CC', 'Cédula de ciudadanía', null);
+
+INSERT INTO tipos_documento(id, created_at, codigo_documento, nombre_documento, modified_at)
+VALUES (2, '2025-01-31 16:48:05.591', 'TI', 'Tarjeta de identidad', null);
+		
+		
+INSERT INTO usuarios(id, nombre_empresa, created_at, documento, correo, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, nombre_completo, modified_at, password, esta_habilitado, id_tipo_documento)
+VALUES (100, 'Meta', '2025-01-31 16:48:05.591', '1010101010', 'mariasierra@correo.com', 
+'Maria', 'Alejandra', 'Sierra', 'Rodriguez', 'Maria Alejandra Sierra Rodriguez', null, '$2a$10$98nvRCb.o0fXTBqbj9sH0ubdgiAMv4LtkdVJEV6iq7YCGpJ0LykPe', true, 1);
+		
+		
+INSERT INTO usuarios_roles(id_usuario, id_rol) VALUES (100, 1);
+
+
+INSERT INTO medicos(id, created_at, modified_at, id_usuario, rethus)
+VALUES (100, '2025-01-31 16:48:05.591', null, 100, '576644');
+
+INSERT INTO pacientes(id, created_at, modified_at, id_usuario)
+VALUES (100, '2025-01-31 16:48:05.591', null, 100);
+
+
+
+INSERT INTO direcciones(id, direccion, created_at, modified_at, id_usuario)
+VALUES (100, 'cll falsa 1234', '2025-01-31 16:48:05.591', null, 100);
+
+INSERT INTO direcciones(id, direccion, created_at, modified_at, id_usuario)
+VALUES (101, 'cll falsa 123', '2025-01-31 16:48:05.591', null, 100);
+
+
+
+INSERT INTO centros_medicos(id, nombre, direccion, created_at, modified_at)
+VALUES (1, 'Medicina general', 'Medicina general', '2025-01-31 16:48:05.591', null);
+
+INSERT INTO centros_medicos(id, nombre, direccion, created_at, modified_at)
+VALUES (2, 'Neurología', 'Neurología', '2025-01-31 16:48:05.591', null);
+
+
+
+INSERT INTO especialidades(id, nombre, descripcion, created_at, modified_at)
+VALUES (1, 'Centro médico norte', 'autopista norte con cll 100', '2025-01-31 16:48:05.591', null);
+
+INSERT INTO especialidades(id, nombre, descripcion, created_at, modified_at)
+VALUES (2, 'Centro médico marly', 'cr 14 #50-45', '2025-01-31 16:48:05.591', null);
+
+
+
+INSERT INTO estados_citas(id, estado, descripcion, created_at, modified_at)
+VALUES (1, 'Sin asignar', 'Sin asignar', '2025-01-31 16:48:05.591', null);
+
+INSERT INTO estados_citas(id, estado, descripcion, created_at, modified_at)
+VALUES (2, 'Asignada', 'Asignada', '2025-01-31 16:48:05.591', null);
+
+INSERT INTO estados_citas(id, estado, descripcion, created_at, modified_at)
+VALUES (3, 'Reasignada', 'Reasignada', '2025-01-31 16:48:05.591', null);
+
+INSERT INTO estados_citas(id, estado, descripcion, created_at, modified_at)
+VALUES (4, 'Atendida', 'Atendida', '2025-01-31 16:48:05.591', null);
+
+INSERT INTO estados_citas(id, estado, descripcion, created_at, modified_at)
+VALUES (5, 'Cancelada', 'Cancelada', '2025-01-31 16:48:05.591', null);
+
+INSERT INTO estados_citas(id, estado, descripcion, created_at, modified_at)
+VALUES (6, 'Paciente no asistió', 'Paciente no asistió', '2025-01-31 16:48:05.591', null);
+
