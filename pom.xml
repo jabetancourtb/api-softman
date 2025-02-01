@@ -75,12 +75,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Spring context -->
-<!--		<dependency>-->
-<!--		    <groupId>org.springframework</groupId>-->
-<!--		    <artifactId>spring-context</artifactId>-->
-<!--		</dependency>-->
-		
 		<!-- Spring boot Devtools -->
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
@@ -109,20 +103,6 @@
             <version>6.4.2.Final</version>
         </dependency>
         
-        <!-- Hibernate entitymanager -->
-<!--        <dependency> -->
-<!--		  <groupId>org.hibernate</groupId> -->
-<!--		  <artifactId>hibernate-entitymanager</artifactId> -->
-<!--		  <version>5.6.5.Final</version> -->
-<!--		</dependency>-->
-		
-		<!-- Hibernate core -->
-<!--		<dependency> -->
-<!--		  <groupId>org.hibernate</groupId> -->
-<!--		  <artifactId>hibernate-core</artifactId> -->
-<!--		  <version>5.6.5.Final</version> -->
-<!--		</dependency>-->
-        
         <!-- Spring boot Starter Validation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -133,7 +113,7 @@
     	<dependency>
 		    <groupId>org.springdoc</groupId>
 		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-		    <version>2.2.0</version>
+		    <version>2.7.0</version>
 		</dependency>
 		
 		<!-- Gson -->

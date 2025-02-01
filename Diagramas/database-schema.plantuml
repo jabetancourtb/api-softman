@@ -1,0 +1,133 @@
+@startuml
+
+entity "direcciones" {
+  * id : INT NOT NULL
+  --
+  * id_usuario : INT NOT NULL
+  direccion : VARCHAR NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "usuarios" {
+  * id : INT NOT NULL
+  --
+  * id_usuario : INT NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "bitacora" {
+  * id : INT NOT NULL
+  --
+  * id_usuario : INT NOT NULL
+  titulo : VARCHAR
+  titulo_largo : VARCHAR NOT NULL
+  revisado : BOOLEAN
+  aprobado : BOOLEAN
+  aprobado : BOOLEAN
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "medicos" {
+  * id : INT NOT NULL
+  --
+  * id_usuario : INT NOT NULL
+  rethus : VARCHAR NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "citas" {
+  * id : INT NOT NULL
+  --
+  * id_usuarios : INT NOT NULL
+  * id_centro_medico : INT NOT NULL
+  * id_especialidad : INT NOT NULL
+  * id_medico : INT NOT NULL
+  fecha_hora : TIMESTAMP NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "centros_medicos" {
+  * id : INT NOT NULL
+  --
+  * id_asociacion : INT NOT NULL
+  descripcion : VARCHAR NULLABLE
+  created_at : TIMESTAMP
+  modified_at : TIMESTAMP
+}
+
+entity "medicos_centros_medicos" {
+  * id_medico : INT NOT NULL
+  * id_centro_medico : INT NOT NULL
+}
+
+entity "centro_medicos" {
+  * id : INT NOT NULL
+  --
+  nombre : VARCHAR NOT NULL
+  direccion : VARCHAR NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "tipo_documentos" {
+  * id : INT NOT NULL
+  --
+  codigo_documento : VARCHAR NOT NULL
+  nombre_documento : VARCHAR NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "usuarios" {
+  * id : INT NOT NULL
+  --
+  * id_tipo_documento : INT NOT NULL
+  documentos : VARCHAR NOT NULL
+  nombre_nombres : VARCHAR NULLABLE
+  primer_nombre : VARCHAR NOT NULL
+  segundo_nombre : VARCHAR NOT NULL
+  primer_apellido : VARCHAR NOT NULL
+  segundo_apellido : VARCHAR NOT NULL
+  fecha_nacimiento : TIMESTAMP NOT NULL
+  correo : VARCHAR NOT NULL
+  password : VARCHAR NOT NULL
+  sexo : BOOLEAN NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP NULLABLE
+}
+
+entity "pacientes" {
+  * id : INT NOT NULL
+  --
+  * id_usuario : INT NOT NULL
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+entity "especialidades" {
+  * id : INT NOT NULL
+  --
+  estado : VARCHAR NOT NULL
+  descripcion : VARCHAR NULLABLE
+  created_at : TIMESTAMP NOT NULL
+  modified_at : TIMESTAMP
+}
+
+' Relationships
+usuarios ||--o{ direcciones
+usuarios ||--o{ bitacora
+usuarios ||--o{ medicos
+usuarios ||--o{ pacientes
+usuarios }|--|| tipo_documentos
+medicos ||--o{ citas
+centros_medicos ||--o{ citas
+especialidades ||--o{ citas
+medicos ||--o{ medicos_centros_medicos
+centros_medicos ||--o{ medicos_centros_medicos
+
+@enduml

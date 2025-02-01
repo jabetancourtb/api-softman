@@ -46,10 +46,10 @@ public class SecurityConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    http
 	    .csrf(csrf -> csrf.disable())
+	    .cors(cors -> cors.disable())
 	    .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())) 
     	.authorizeHttpRequests(requests -> requests
-			.requestMatchers(WHITE_LIST_URL)
-			.permitAll()
+			.requestMatchers(WHITE_LIST_URL).permitAll()
 			
 			.requestMatchers(GET, URIConstants.CENTROS_MEDICOS+"/**").hasAnyRole(RolEnum.ADMIN.getValue(), RolEnum.MEDICO.getValue(), RolEnum.PACIENTE.getValue())
 			.requestMatchers(POST, URIConstants.CENTROS_MEDICOS+"/**").hasAnyRole(RolEnum.ADMIN.getValue())
@@ -102,14 +102,11 @@ public class SecurityConfiguration {
 			"/swagger-ui/**",
 			"/swagger-resources",
 			"/swagger-resources/**",
-			"/v2/api-docs",
-            "/v3/api-docs",
-            "/v3/api-docs/**",
 			"/api-docs/**",
-			"/css/**",
-			"/fonts/**",
-			"/img/**",
-			"/js/**",
+			"/v1/api-docs/**",
+			"/v1/api-docs/**",
+			"/v2/api-docs/**",
+            "/v3/api-docs/**",
 			"/auth/**",
 			"/h2/**",
 			URIConstants.USUARIOS+"/{isUsuario}"+URIConstants.MEDICOS,

@@ -1,0 +1,810 @@
+{
+	"info": {
+		"_postman_id": "90fbf61d-5630-4eef-89e3-c143b231e6e0",
+		"name": "Softman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10724737",
+		"_collection_link": "https://winter-desert-306288.postman.co/workspace/My-Workspace~b51946a2-09ae-4536-8c9d-d6daa258a259/collection/10724737-90fbf61d-5630-4eef-89e3-c143b231e6e0?action=share&source=collection_link&creator=10724737"
+	},
+	"item": [
+		{
+			"name": "Autenticacion",
+			"item": [
+				{
+					"name": "Sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(pm.response.text());\r",
+									"pm.environment.set(\"bearer_token\", data.accessToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"mariasierra@correo.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(pm.response.text());\r",
+									"pm.environment.set(\"bearer_token\", data.accessToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"jabetancourtb@hotmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/refresh-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.text();\r",
+									"pm.environment.set(\"bearer_token\", data);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar usuario Medico o Paciente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\": \"test@correo.com\", \r\n    \"password\": \"1234\",\r\n    \"documento\": \"123456792\",\r\n    \"nombreEmpresa\": \"Acme Corp\",\r\n    \"primerNombre\": \"John\",\r\n    \"segundoNombre\": null,\r\n    \"primerApellido\": \"Smith\",\r\n    \"segundoApellido\": null,\r\n    \"estaHabilitado\": true,\r\n    \"idRol\": 2,\r\n    \"idTipoDocumento\": 1,\r\n    \"rethus\": \"43534667\",\r\n    \"direcciones\" : [\r\n        {\r\n            \"direccion\": \"cll falsa 123\"\r\n        }\r\n    ],\r\n    \"telefonos\" : [\r\n        {\r\n            \"telefono\": \"12324567\"\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/registro",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"registro"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Citas",
+			"item": [
+				{
+					"name": "Consultar citas por paginación y por idEstadoCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/estados-citas/1/citas?page=1&pageSize=20&field=id&asc=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estados-citas",
+								"1",
+								"citas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "field",
+									"value": "id"
+								},
+								{
+									"key": "asc",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar citas por paginación por idMedico y por idEstadoCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/medicos/1/estados-citas/1/citas?page=1&pageSize=20&field=id&asc=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"medicos",
+								"1",
+								"estados-citas",
+								"1",
+								"citas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "field",
+									"value": "id"
+								},
+								{
+									"key": "asc",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar citas por paginación por idEspecialidad y por idEstadoCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/especialidades/1/estados-citas/1/citas?page=1&pageSize=20&field=id&asc=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"especialidades",
+								"1",
+								"estados-citas",
+								"1",
+								"citas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "field",
+									"value": "id"
+								},
+								{
+									"key": "asc",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar citas por paginación por idCentroMedico por idMedico y por idEstadoCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/centros-medicos/1/medicos/1/estados-citas/1/citas?page=1&pageSize=20&field=id&asc=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"centros-medicos",
+								"1",
+								"medicos",
+								"1",
+								"estados-citas",
+								"1",
+								"citas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "field",
+									"value": "id"
+								},
+								{
+									"key": "asc",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar citas por paginación por idCentroMedico por idEspecialidad y por idEstadoCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/centros-medicos/1/especialidades/1/estados-citas/1/citas?page=1&pageSize=20&field=id&asc=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"centros-medicos",
+								"1",
+								"especialidades",
+								"1",
+								"estados-citas",
+								"1",
+								"citas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "field",
+									"value": "id"
+								},
+								{
+									"key": "asc",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar citas por paginación por idPaciente y por idEstadoCita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pacientes/1/estados-citas/3/citas?page=1&pageSize=20&field=id&asc=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pacientes",
+								"1",
+								"estados-citas",
+								"3",
+								"citas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "field",
+									"value": "id"
+								},
+								{
+									"key": "asc",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear cita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaHora\": \"2025-01-31 18:48:05.591\",\r\n    \"estadoCita\": {\r\n        \"id\": 2\r\n    },\r\n    \"centroMedico\": {\r\n        \"id\": 1\r\n    },\r\n    \"especialidad\": {\r\n        \"id\": 1\r\n    },\r\n    \"medico\": {\r\n        \"id\": 100\r\n    },\r\n    \"paciente\": {\r\n        \"id\": 100\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/citas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"citas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar cita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"fechaHora\": \"2025-01-31 18:48:05\",\r\n    \"createdAt\": \"2025-02-01T16:41:39.329+00:00\",\r\n    \"modifiedAt\": null,\r\n    \"estadoCita\": {\r\n        \"id\": 1\r\n    },\r\n    \"centroMedico\": {\r\n        \"id\": 1,\r\n        \"nombre\": null,\r\n        \"direccion\": null,\r\n        \"createdAt\": null,\r\n        \"modifiedAt\": null\r\n    },\r\n    \"especialidad\": {\r\n        \"id\": 1,\r\n        \"nombre\": null,\r\n        \"descripcion\": null,\r\n        \"createdAt\": null,\r\n        \"modifiedAt\": null\r\n    },\r\n    \"medico\": {\r\n        \"id\": 1,\r\n        \"rethus\": null,\r\n        \"documento\": null,\r\n        \"primerNombre\": null,\r\n        \"segundoNombre\": null,\r\n        \"primerApellido\": null,\r\n        \"segundoApellido\": null,\r\n        \"createdAt\": null,\r\n        \"modifiedAt\": null,\r\n        \"idUsuario\": null\r\n    },\r\n    \"paciente\": {\r\n        \"id\": 4\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/citas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"citas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar cita por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/citas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"citas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar cita por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/citas/1552",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"citas",
+								"1552"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar estado cita por id cita",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEstadoCita\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/citas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"citas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estados citas",
+			"item": [
+				{
+					"name": "Consultar estados citas por paginación",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/estados-citas?page=1&pageSize=20&field=id&asc=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estados-citas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "field",
+									"value": "id"
+								},
+								{
+									"key": "asc",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear estado cita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\": \"prueba\",\r\n    \"descripcion\": \"descripcion\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/estados-citas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estados-citas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar estado cita",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 102,\r\n    \"estado\": \"prueba2\",\r\n    \"descripcion\": \"descripcion\",\r\n    \"createdAt\": \"2025-02-01T16:28:14.251+00:00\",\r\n    \"modifiedAt\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/estados-citas/102",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estados-citas",
+								"102"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar estado cita por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/estados-citas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estados-citas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar estado cita por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/estados-citas/52",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estados-citas",
+								"52"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
